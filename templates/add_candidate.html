@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Candidate</title>
+    <style>
+        body{font-family:Arial;background:#f4f4f4;}
+        .container{width:500px;margin:40px auto;background:#fff;padding:25px;border-radius:8px;box-shadow:0 0 10px #ccc;}
+        input,select{width:100%;padding:10px;margin:8px 0;}
+        button{width:100%;padding:12px;background:#2563eb;color:white;border:none;border-radius:5px;cursor:pointer;}
+    </style>
+</head>
+<body>
+
+<div class="container" style="padding-right: 2%;">
+    <h2>Add Candidate</h2>
+
+    <form id="candidateForm">
+
+        Full Name :<input type="text" placeholder="Name" id="name" style="width: 31vw;" required>
+
+        Email : <input type="email" placeholder="Email" id="email" style="width: 31vw;" required>
+
+        Mobile : <input type="text" placeholder="Mobile" id="mobile" style="width: 31vw;" required>
+
+        Department : <select id="department">
+            <option>CSE</option>
+            <option>CS</option>
+            <option>IT</option>
+            <option>ECE</option>
+            <option>EE</option>
+            <option>ME</option>
+        </select>
+
+        Percentage : <input type="number" placeholder="Percentage" id="percentage" style="width: 31vw;">
+
+        Active Backlogs : <select id="active_backlogs" style="width: 33vw;">
+            <option>NO</option>
+            <option>YES</option>
+        </select>
+
+        Preferred Tech Stack : <input type="text" placeholder="Preferred Tech Stack" id="prefered_techstack" style="width: 31vw;">
+
+        <button type="submit">Save Candidate</button>
+
+    </form>
+</div>
+
+<script>
+document.getElementById("candidateForm").addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        mobile: document.getElementById("mobile").value,
+        department: document.getElementById("department").value,
+        percentage: Number(document.getElementById("percentage").value),
+        active_backlogs: document.getElementById("active_backlogs").value,
+        prefered_techstack: document.getElementById("prefered_techstack").value
+    };
+
+    console.log(data);
+
+    const res = await fetch("/candidates", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+        alert("Candidate Added Successfully");
+        document.getElementById("candidateForm").reset();
+    } else {
+        const error = await res.json();
+        alert(error.error || "Failed to add candidate");
+    }
+});
+</script>
+
+</body>
+</html>

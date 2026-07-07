@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Recruitment System</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f5f5f5;
+        }
+
+        .container{
+            width:600px;
+            margin:60px auto;
+            background:white;
+            padding:40px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,.15);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:35px;
+            color:#333;
+        }
+
+        .menu{
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        }
+
+        .menu a{
+            text-decoration:none;
+        }
+
+        .menu button{
+            width:100%;
+            padding:15px;
+            font-size:18px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            background:#2563eb;
+            color:white;
+            transition:.3s;
+        }
+
+        .menu button:hover{
+            background:#1d4ed8;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Candidate Recruitment System</h1>
+
+    <div class="menu">
+
+        <a href="/add-candidate">
+            <button>Add Candidate</button>
+        </a>
+
+        <a href="/candidates-page">
+            <button>View Candidate List</button>
+        </a>
+
+        <a href="/round1-page">
+            <button>Enter Round 1 Scores</button>
+        </a>
+
+        <a href="/shortlisted-page">
+            <button>View Shortlisted Candidates</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Round 1 Evaluation</title>
+
+<style>
+
+body{font-family:Arial;background:#f4f4f4;}
+
+.container{
+width:450px;
+margin:30px auto;
+background:white;
+padding:20px;
+border-radius:8px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:8px 0;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#2563eb;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container" style="padding-right: 3%;">
+
+<h2>Round 1 Evaluation</h2>
+
+Candidate ID : <input id="candidateId" placeholder="Candidate ID">
+
+Requirement Understanding : <input id="requirement_understanding" placeholder="Requirement Understanding (20)">
+Feature Implementation : <input id="feature_implementation" placeholder="Feature Implementation (30)">
+Validation : <input id="validation_edge_cases" placeholder="Validation (20)">
+Code Structure : <input id="code_structure" placeholder="Code Structure (20)">
+AI Usage : <input id="ai_usage" placeholder="AI Usage (10)">
+
+<button onclick="submitScore()">Submit</button>
+
+</div>
+
+<script>
+
+async function submitScore(){
+
+const id=document.getElementById("candidateId").value;
+
+const body={
+
+requirement_understanding:Number(requirement_understanding.value),
+feature_implementation:Number(feature_implementation.value),
+validation_edge_cases:Number(validation_edge_cases.value),
+code_structure:Number(code_structure.value),
+ai_usage:Number(ai_usage.value)
+
+};
+
+await fetch(`/candidates/${id}/round1`,{
+
+method:"PUT",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(body)
+
+});
+
+await fetch(`/candidates/${id}/check-eligibility`,{
+
+method:"POST"
+
+});
+
+alert("Evaluation Completed");
+
+}
+
+</script>
+
+</body>
+</html>
